@@ -1,0 +1,127 @@
+{
+  "nodes": {
+    "0": {
+      "type": "CORE",
+      "rotation": "DEG_0"
+    },
+    "1": {
+      "type": "BRICK",
+      "rotation": "DEG_90"
+    },
+    "2": {
+      "type": "HINGE",
+      "rotation": "DEG_90"
+    },
+    "3": {
+      "type": "HINGE",
+      "rotation": "DEG_45"
+    },
+    "4": {
+      "type": "HINGE",
+      "rotation": "DEG_0"
+    },
+    "8": {
+      "type": "BRICK",
+      "rotation": "DEG_0"
+    },
+    "20": {
+      "type": "HINGE",
+      "rotation": "DEG_45"
+    },
+    "31": {
+      "type": "BRICK",
+      "rotation": "DEG_90"
+    },
+    "32": {
+      "type": "HINGE",
+      "rotation": "DEG_45"
+    },
+    "33": {
+      "type": "BRICK",
+      "rotation": "DEG_0"
+    },
+    "35": {
+      "type": "HINGE",
+      "rotation": "DEG_0"
+    },
+    "36": {
+      "type": "BRICK",
+      "rotation": "DEG_90"
+    },
+    "37": {
+      "type": "HINGE",
+      "rotation": "DEG_0"
+    },
+    "38": {
+      "type": "HINGE",
+      "rotation": "DEG_45"
+    }
+  },
+  "edges": [
+    {
+      "parent": 0,
+      "child": 1,
+      "face": "LEFT"
+    },
+    {
+      "parent": 0,
+      "child": 2,
+      "face": "RIGHT"
+    },
+    {
+      "parent": 2,
+      "child": 3,
+      "face": "FRONT"
+    },
+    {
+      "parent": 0,
+      "child": 4,
+      "face": "BACK"
+    },
+    {
+      "parent": 4,
+      "child": 8,
+      "face": "FRONT"
+    },
+    {
+      "parent": 8,
+      "child": 20,
+      "face": "BOTTOM"
+    },
+    {
+      "parent": 32,
+      "child": 33,
+      "face": "FRONT"
+    },
+    {
+      "parent": 33,
+      "child": 35,
+      "face": "FRONT"
+    },
+    {
+      "parent": 31,
+      "child": 32,
+      "face": "FRONT"
+    },
+    {
+      "parent": 8,
+      "child": 31,
+      "face": "FRONT"
+    },
+    {
+      "parent": 36,
+      "child": 37,
+      "face": "FRONT"
+    },
+    {
+      "parent": 33,
+      "child": 36,
+      "face": "BOTTOM"
+    },
+    {
+      "parent": 1,
+      "child": 38,
+      "face": "FRONT"
+    }
+  ]
+}

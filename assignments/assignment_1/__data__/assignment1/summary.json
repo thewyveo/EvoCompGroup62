@@ -1,0 +1,71 @@
+{
+  "settings": {
+    "pop_size": 50,
+    "num_generations": 100,
+    "evaluation_budget": 5050,
+    "max_modules": 20,
+    "max_depth": 12,
+    "tournament_size": 3,
+    "crossover_probability": 0.9,
+    "mutation_probability": 1.0,
+    "max_variation_attempts": 10,
+    "seeds": [
+      11,
+      22,
+      33,
+      44,
+      55,
+      66,
+      77,
+      88,
+      99,
+      110
+    ]
+  },
+  "summary": [
+    {
+      "approach": "point_only",
+      "runs": 10,
+      "mean_final_best": 12.57186147987659,
+      "std_final_best": 0.3315089635715459,
+      "min_final_best": 12.132455532033676,
+      "max_final_best": 13.06287388383278
+    },
+    {
+      "approach": "mixed",
+      "runs": 10,
+      "mean_final_best": 12.645523440405182,
+      "std_final_best": 0.2495912874656697,
+      "min_final_best": 12.207106781186548,
+      "max_final_best": 12.9
+    },
+    {
+      "approach": "random_search",
+      "runs": 10,
+      "mean_final_best": 14.341705194756551,
+      "std_final_best": 0.23706748070699982,
+      "min_final_best": 14.024845673131658,
+      "max_final_best": 14.772077843177478
+    }
+  ],
+  "tests": [
+    {
+      "comparison": "mixed vs point_only",
+      "U": 56.0,
+      "p_value": 0.6775849579524755,
+      "A12": 0.44
+    },
+    {
+      "comparison": "mixed vs random_search",
+      "U": 0.0,
+      "p_value": 0.00018267179110955002,
+      "A12": 1.0
+    },
+    {
+      "comparison": "point_only vs random_search",
+      "U": 0.0,
+      "p_value": 0.00018267179110955002,
+      "A12": 1.0
+    }
+  ]
+}
