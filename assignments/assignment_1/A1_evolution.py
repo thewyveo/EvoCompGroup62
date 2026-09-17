@@ -18,6 +18,7 @@ from ariel.body_phenotypes.robogen_lite.config import IDX_OF_CORE
 from ariel.body_phenotypes.robogen_lite.decoders._blueprint import load_graph_from_json
 from ariel.ec import EA, EAOperation, Individual, Population
 from ariel.ec.genotypes.tree.operators import (
+    crossover_subtree,
     mutate_hoist,
     mutate_replace_node,
     mutate_shrink,
@@ -163,66 +164,30 @@ def parent_selection(population: Population) -> Population:
     return population
 
 
-def subtree_nodes(genome: TreeGenome, root: int) -> set[int]:
-    """Return the ids of ``root`` and all its descendants."""
-    nodes = {root}
-    frontier = [root]
-    while frontier:
-        parent = frontier.pop()
-        for edge in genome.edges:
-            if edge["parent"] == parent:
-                nodes.add(edge["child"])
-                frontier.append(edge["child"])
-    return nodes
+def subtree_crossover(
+    parent_a: TreeGenome,
+    parent_b: TreeGenome,
+) -> tuple[TreeGenome, TreeGenome, bool]:
+    """Perform ARIEL subtree crossover, retrying until it produces valid changed offspring.
 
-
-def graft(receiver: TreeGenome, cut_node: int, donor: TreeGenome, donor_root: int) -> TreeGenome:
-    """Replace the subtree at ``cut_node`` with a copy of the donor's subtree.
-
-    The donor subtree is attached to the parent and face that ``cut_node``
-    occupied. That face is allowed by the receiving parent's type regardless of
-    what is attached to it, so the result is a valid tree.
+    ARIEL's patched ``crossover_subtree`` performs the actual subtree exchange.
+    We retain our own retry logic because the experiment additionally imposes
+    MAX_MODULES and MAX_DEPTH constraints and tracks whether crossover had an
+    observable effect.
     """
-    child = clone(receiver)
-    attachment = next(e for e in child.edges if e["child"] == cut_node)
-    remove_subtree(child, cut_node)
+    parent_forms = (canonical_form(parent_a), canonical_form(parent_b))
 
-    donor_nodes = subtree_nodes(donor, donor_root)
-    next_id = max(child.nodes) + 1
-    new_id = {old: next_id + i for i, old in enumerate(sorted(donor_nodes))}
-    for old in donor_nodes:
-        child.nodes[new_id[old]] = dict(donor.nodes[old])
-    for edge in donor.edges:
-        if edge["parent"] in donor_nodes:
-            child.edges.append(
-                {"parent": new_id[edge["parent"]], "child": new_id[edge["child"]], "face": edge["face"]},
-            )
-    child.edges.append(
-        {"parent": attachment["parent"], "child": new_id[donor_root], "face": attachment["face"]},
-    )
-    return child
+    for _ in range(MAX_VARIATION_ATTEMPTS):
+        child_a, child_b = crossover_subtree(parent_a, parent_b)
 
+        if not (is_valid(child_a) and is_valid(child_b)):
+            continue
 
-def subtree_crossover(parent_a: TreeGenome, parent_b: TreeGenome) -> tuple[TreeGenome, TreeGenome, bool]:
-    """Swap random non-core subtrees between two parents (Koza, 1992).
+        child_forms = (canonical_form(child_a), canonical_form(child_b))
 
-    ARIEL's ``crossover_subtree`` is not used because it never re-attaches the
-    swapped subtrees, so it always returns copies of the parents. Crossover
-    points are resampled until both children satisfy the caps and at least one
-    differs from its parent. Returns the children and whether crossover
-    succeeded; on failure the children are copies of the parents.
-    """
-    points_a = [n for n in parent_a.nodes if n != IDX_OF_CORE]
-    points_b = [n for n in parent_b.nodes if n != IDX_OF_CORE]
-    if points_a and points_b:
-        forms = (canonical_form(parent_a), canonical_form(parent_b))
-        for _ in range(MAX_VARIATION_ATTEMPTS):
-            node_a = random.choice(points_a)
-            node_b = random.choice(points_b)
-            child_a = graft(parent_a, node_a, parent_b, node_b)
-            child_b = graft(parent_b, node_b, parent_a, node_a)
-            if is_valid(child_a) and is_valid(child_b) and (canonical_form(child_a), canonical_form(child_b)) != forms:
-                return child_a, child_b, True
+        if child_forms != parent_forms:
+            return child_a, child_b, True
+
     return clone(parent_a), clone(parent_b), False
 
 
