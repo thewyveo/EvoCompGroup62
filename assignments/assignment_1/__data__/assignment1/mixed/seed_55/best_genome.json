@@ -1,0 +1,127 @@
+{
+  "nodes": {
+    "0": {
+      "type": "CORE",
+      "rotation": "DEG_0"
+    },
+    "1": {
+      "type": "BRICK",
+      "rotation": "DEG_0"
+    },
+    "6": {
+      "type": "HINGE",
+      "rotation": "DEG_45"
+    },
+    "9": {
+      "type": "HINGE",
+      "rotation": "DEG_90"
+    },
+    "15": {
+      "type": "BRICK",
+      "rotation": "DEG_90"
+    },
+    "17": {
+      "type": "BRICK",
+      "rotation": "DEG_90"
+    },
+    "24": {
+      "type": "HINGE",
+      "rotation": "DEG_45"
+    },
+    "25": {
+      "type": "HINGE",
+      "rotation": "DEG_90"
+    },
+    "26": {
+      "type": "BRICK",
+      "rotation": "DEG_90"
+    },
+    "27": {
+      "type": "BRICK",
+      "rotation": "DEG_45"
+    },
+    "28": {
+      "type": "HINGE",
+      "rotation": "DEG_0"
+    },
+    "29": {
+      "type": "HINGE",
+      "rotation": "DEG_45"
+    },
+    "30": {
+      "type": "BRICK",
+      "rotation": "DEG_45"
+    },
+    "31": {
+      "type": "HINGE",
+      "rotation": "DEG_90"
+    }
+  },
+  "edges": [
+    {
+      "parent": 0,
+      "child": 1,
+      "face": "FRONT"
+    },
+    {
+      "parent": 0,
+      "child": 6,
+      "face": "RIGHT"
+    },
+    {
+      "parent": 1,
+      "child": 9,
+      "face": "TOP"
+    },
+    {
+      "parent": 15,
+      "child": 17,
+      "face": "TOP"
+    },
+    {
+      "parent": 0,
+      "child": 15,
+      "face": "LEFT"
+    },
+    {
+      "parent": 15,
+      "child": 24,
+      "face": "BOTTOM"
+    },
+    {
+      "parent": 6,
+      "child": 25,
+      "face": "FRONT"
+    },
+    {
+      "parent": 26,
+      "child": 27,
+      "face": "TOP"
+    },
+    {
+      "parent": 27,
+      "child": 28,
+      "face": "LEFT"
+    },
+    {
+      "parent": 26,
+      "child": 29,
+      "face": "LEFT"
+    },
+    {
+      "parent": 27,
+      "child": 30,
+      "face": "BOTTOM"
+    },
+    {
+      "parent": 1,
+      "child": 26,
+      "face": "LEFT"
+    },
+    {
+      "parent": 30,
+      "child": 31,
+      "face": "TOP"
+    }
+  ]
+}

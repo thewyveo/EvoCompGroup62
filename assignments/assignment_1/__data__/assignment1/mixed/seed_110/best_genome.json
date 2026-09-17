@@ -1,0 +1,127 @@
+{
+  "nodes": {
+    "0": {
+      "type": "CORE",
+      "rotation": "DEG_0"
+    },
+    "2": {
+      "type": "HINGE",
+      "rotation": "DEG_90"
+    },
+    "20": {
+      "type": "HINGE",
+      "rotation": "DEG_90"
+    },
+    "31": {
+      "type": "HINGE",
+      "rotation": "DEG_45"
+    },
+    "30": {
+      "type": "HINGE",
+      "rotation": "DEG_90"
+    },
+    "45": {
+      "type": "BRICK",
+      "rotation": "DEG_90"
+    },
+    "46": {
+      "type": "HINGE",
+      "rotation": "DEG_45"
+    },
+    "47": {
+      "type": "BRICK",
+      "rotation": "DEG_0"
+    },
+    "48": {
+      "type": "BRICK",
+      "rotation": "DEG_90"
+    },
+    "51": {
+      "type": "BRICK",
+      "rotation": "DEG_0"
+    },
+    "50": {
+      "type": "BRICK",
+      "rotation": "DEG_90"
+    },
+    "52": {
+      "type": "BRICK",
+      "rotation": "DEG_0"
+    },
+    "53": {
+      "type": "HINGE",
+      "rotation": "DEG_0"
+    },
+    "49": {
+      "type": "HINGE",
+      "rotation": "DEG_45"
+    }
+  },
+  "edges": [
+    {
+      "parent": 0,
+      "child": 2,
+      "face": "FRONT"
+    },
+    {
+      "parent": 0,
+      "child": 20,
+      "face": "LEFT"
+    },
+    {
+      "parent": 30,
+      "child": 31,
+      "face": "FRONT"
+    },
+    {
+      "parent": 0,
+      "child": 30,
+      "face": "RIGHT"
+    },
+    {
+      "parent": 45,
+      "child": 46,
+      "face": "BOTTOM"
+    },
+    {
+      "parent": 20,
+      "child": 45,
+      "face": "FRONT"
+    },
+    {
+      "parent": 47,
+      "child": 48,
+      "face": "FRONT"
+    },
+    {
+      "parent": 48,
+      "child": 49,
+      "face": "LEFT"
+    },
+    {
+      "parent": 51,
+      "child": 52,
+      "face": "TOP"
+    },
+    {
+      "parent": 52,
+      "child": 53,
+      "face": "BOTTOM"
+    },
+    {
+      "parent": 50,
+      "child": 51,
+      "face": "FRONT"
+    },
+    {
+      "parent": 48,
+      "child": 50,
+      "face": "TOP"
+    },
+    {
+      "parent": 2,
+      "child": 47,
+      "face": "FRONT"
+    }
+  ]
+}

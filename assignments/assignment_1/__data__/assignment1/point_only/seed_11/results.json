@@ -1,0 +1,1019 @@
+{
+  "approach": "point_only",
+  "seed": 11,
+  "evaluation_budget": 5050,
+  "final_best": 13.012403840463595,
+  "best_modules": 14,
+  "history": [
+    {
+      "generation": 0,
+      "best": 15.8293765408777,
+      "mean": 18.304241621970778,
+      "std": 1.3800204675690935,
+      "unique_fraction": 0.92,
+      "mean_modules": 9.46,
+      "crossover_success_rate": 0.0,
+      "mutation_success_rate": 0.0
+    },
+    {
+      "generation": 1,
+      "best": 15.8293765408777,
+      "mean": 16.876018692520017,
+      "std": 0.42756825621254674,
+      "unique_fraction": 0.98,
+      "mean_modules": 9.02,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 2,
+      "best": 15.315587038162704,
+      "mean": 16.43144251989013,
+      "std": 0.38142326546971905,
+      "unique_fraction": 1.0,
+      "mean_modules": 9.24,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 3,
+      "best": 15.187817782917154,
+      "mean": 16.03976594303578,
+      "std": 0.3549208093856541,
+      "unique_fraction": 0.98,
+      "mean_modules": 9.76,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 4,
+      "best": 14.457066051117286,
+      "mean": 15.752226918776604,
+      "std": 0.33586740676603005,
+      "unique_fraction": 0.98,
+      "mean_modules": 10.36,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 5,
+      "best": 14.457066051117286,
+      "mean": 15.593528015599299,
+      "std": 0.34145064547588616,
+      "unique_fraction": 1.0,
+      "mean_modules": 10.66,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 6,
+      "best": 14.457066051117286,
+      "mean": 15.409202378866317,
+      "std": 0.32842667599763825,
+      "unique_fraction": 0.98,
+      "mean_modules": 10.74,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 7,
+      "best": 14.457066051117286,
+      "mean": 15.136659568700702,
+      "std": 0.2703933262148404,
+      "unique_fraction": 0.98,
+      "mean_modules": 10.94,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 8,
+      "best": 14.457066051117286,
+      "mean": 15.054595799766423,
+      "std": 0.2455702506553854,
+      "unique_fraction": 0.98,
+      "mean_modules": 11.02,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 9,
+      "best": 14.410844001658269,
+      "mean": 14.90398599291813,
+      "std": 0.2251147916063056,
+      "unique_fraction": 0.98,
+      "mean_modules": 11.08,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 10,
+      "best": 14.254065922853801,
+      "mean": 14.793323934740185,
+      "std": 0.2007874223938903,
+      "unique_fraction": 0.98,
+      "mean_modules": 11.34,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 11,
+      "best": 14.18193472919817,
+      "mean": 14.719660037465838,
+      "std": 0.19636291406196899,
+      "unique_fraction": 0.96,
+      "mean_modules": 11.36,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 12,
+      "best": 14.077902338672773,
+      "mean": 14.658029972766641,
+      "std": 0.19687071676811294,
+      "unique_fraction": 0.96,
+      "mean_modules": 11.3,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 13,
+      "best": 13.81494416796099,
+      "mean": 14.568968219472268,
+      "std": 0.21180751670312684,
+      "unique_fraction": 0.94,
+      "mean_modules": 11.66,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 14,
+      "best": 13.81494416796099,
+      "mean": 14.532293873642523,
+      "std": 0.21928786575849224,
+      "unique_fraction": 0.96,
+      "mean_modules": 11.86,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 15,
+      "best": 13.81494416796099,
+      "mean": 14.443972252558506,
+      "std": 0.2414214423790578,
+      "unique_fraction": 0.92,
+      "mean_modules": 11.9,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 16,
+      "best": 13.81494416796099,
+      "mean": 14.370253961592931,
+      "std": 0.2574408549764139,
+      "unique_fraction": 0.92,
+      "mean_modules": 11.76,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 17,
+      "best": 13.81494416796099,
+      "mean": 14.32476595232235,
+      "std": 0.2457179689891488,
+      "unique_fraction": 0.92,
+      "mean_modules": 11.9,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 18,
+      "best": 13.795829710142188,
+      "mean": 14.239057447877837,
+      "std": 0.21594887553241846,
+      "unique_fraction": 0.94,
+      "mean_modules": 11.84,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 19,
+      "best": 13.6431676725155,
+      "mean": 14.186957693200313,
+      "std": 0.20065204878506404,
+      "unique_fraction": 0.94,
+      "mean_modules": 11.98,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 20,
+      "best": 13.6431676725155,
+      "mean": 14.16705642606001,
+      "std": 0.19201810316258575,
+      "unique_fraction": 0.94,
+      "mean_modules": 11.96,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 21,
+      "best": 13.6431676725155,
+      "mean": 14.130310827901912,
+      "std": 0.18331425325621425,
+      "unique_fraction": 0.96,
+      "mean_modules": 11.84,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 22,
+      "best": 13.6431676725155,
+      "mean": 14.08660290633472,
+      "std": 0.1681329606773996,
+      "unique_fraction": 0.94,
+      "mean_modules": 11.72,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 23,
+      "best": 13.549285568453591,
+      "mean": 14.055186295470694,
+      "std": 0.17105585324318037,
+      "unique_fraction": 0.94,
+      "mean_modules": 11.8,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 24,
+      "best": 13.524845673131658,
+      "mean": 14.021546930493109,
+      "std": 0.1715514740928721,
+      "unique_fraction": 0.94,
+      "mean_modules": 11.76,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 25,
+      "best": 13.524845673131658,
+      "mean": 14.00380127773663,
+      "std": 0.17189772307041148,
+      "unique_fraction": 0.92,
+      "mean_modules": 11.8,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 26,
+      "best": 13.524845673131658,
+      "mean": 13.960817659369848,
+      "std": 0.1884653072491107,
+      "unique_fraction": 0.9,
+      "mean_modules": 11.84,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 27,
+      "best": 13.524845673131658,
+      "mean": 13.921465974482212,
+      "std": 0.18907505561167745,
+      "unique_fraction": 0.92,
+      "mean_modules": 11.98,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 28,
+      "best": 13.524845673131658,
+      "mean": 13.912113929584988,
+      "std": 0.1813658370456206,
+      "unique_fraction": 0.9,
+      "mean_modules": 12.02,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 29,
+      "best": 13.524845673131658,
+      "mean": 13.875426723587331,
+      "std": 0.1762822251617576,
+      "unique_fraction": 0.92,
+      "mean_modules": 12.06,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 30,
+      "best": 13.193737745050923,
+      "mean": 13.845663163830872,
+      "std": 0.1919670497999577,
+      "unique_fraction": 0.92,
+      "mean_modules": 12.02,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 31,
+      "best": 13.193737745050923,
+      "mean": 13.808692053927109,
+      "std": 0.1846124906307649,
+      "unique_fraction": 0.94,
+      "mean_modules": 12.06,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 32,
+      "best": 13.193737745050923,
+      "mean": 13.775645293395385,
+      "std": 0.17989118528137107,
+      "unique_fraction": 0.92,
+      "mean_modules": 12.02,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 33,
+      "best": 13.193737745050923,
+      "mean": 13.767438715449746,
+      "std": 0.17428452458713337,
+      "unique_fraction": 0.92,
+      "mean_modules": 11.92,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 34,
+      "best": 13.193737745050923,
+      "mean": 13.756534434447037,
+      "std": 0.1724832528262214,
+      "unique_fraction": 0.9,
+      "mean_modules": 11.96,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 35,
+      "best": 13.193737745050923,
+      "mean": 13.71436357063449,
+      "std": 0.15414777573730956,
+      "unique_fraction": 0.9,
+      "mean_modules": 12.1,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 36,
+      "best": 13.193737745050923,
+      "mean": 13.702946923111604,
+      "std": 0.15860230259168637,
+      "unique_fraction": 0.9,
+      "mean_modules": 12.16,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 37,
+      "best": 13.193737745050923,
+      "mean": 13.66983896869122,
+      "std": 0.14241937402940671,
+      "unique_fraction": 0.92,
+      "mean_modules": 12.14,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 38,
+      "best": 13.193737745050923,
+      "mean": 13.666985559092009,
+      "std": 0.13954547204687429,
+      "unique_fraction": 0.92,
+      "mean_modules": 12.14,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 39,
+      "best": 13.193737745050923,
+      "mean": 13.642301044665494,
+      "std": 0.14532090056784175,
+      "unique_fraction": 0.86,
+      "mean_modules": 12.12,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 40,
+      "best": 13.193737745050923,
+      "mean": 13.608187562842653,
+      "std": 0.14996387785369447,
+      "unique_fraction": 0.84,
+      "mean_modules": 12.14,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 41,
+      "best": 13.193737745050923,
+      "mean": 13.570820122178553,
+      "std": 0.15645657961911372,
+      "unique_fraction": 0.8,
+      "mean_modules": 12.14,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 42,
+      "best": 13.193737745050923,
+      "mean": 13.547089918842955,
+      "std": 0.1512103054740807,
+      "unique_fraction": 0.78,
+      "mean_modules": 12.14,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 43,
+      "best": 13.193737745050923,
+      "mean": 13.524261504748512,
+      "std": 0.15436240472164334,
+      "unique_fraction": 0.74,
+      "mean_modules": 12.14,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 44,
+      "best": 13.193737745050923,
+      "mean": 13.513919379616366,
+      "std": 0.15877484369581488,
+      "unique_fraction": 0.72,
+      "mean_modules": 12.14,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 45,
+      "best": 13.193737745050923,
+      "mean": 13.506597538827993,
+      "std": 0.15846578151800736,
+      "unique_fraction": 0.72,
+      "mean_modules": 12.12,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 46,
+      "best": 13.193737745050923,
+      "mean": 13.498106068761352,
+      "std": 0.1536509226449312,
+      "unique_fraction": 0.72,
+      "mean_modules": 12.16,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 47,
+      "best": 13.193737745050923,
+      "mean": 13.4893988476309,
+      "std": 0.15178573423173242,
+      "unique_fraction": 0.74,
+      "mean_modules": 12.16,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 48,
+      "best": 13.193737745050923,
+      "mean": 13.484562553364897,
+      "std": 0.1475274744464155,
+      "unique_fraction": 0.7,
+      "mean_modules": 12.16,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 49,
+      "best": 13.012403840463595,
+      "mean": 13.465795521227735,
+      "std": 0.15622649567950214,
+      "unique_fraction": 0.7,
+      "mean_modules": 12.2,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 50,
+      "best": 13.012403840463595,
+      "mean": 13.464084990687201,
+      "std": 0.15473618455434685,
+      "unique_fraction": 0.7,
+      "mean_modules": 12.16,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 51,
+      "best": 13.012403840463595,
+      "mean": 13.437575166459071,
+      "std": 0.1506035985562527,
+      "unique_fraction": 0.7,
+      "mean_modules": 12.24,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 52,
+      "best": 13.012403840463595,
+      "mean": 13.419719272470184,
+      "std": 0.14504051716305766,
+      "unique_fraction": 0.72,
+      "mean_modules": 12.28,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 53,
+      "best": 13.012403840463595,
+      "mean": 13.413478327395806,
+      "std": 0.14211157071535394,
+      "unique_fraction": 0.7,
+      "mean_modules": 12.3,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 54,
+      "best": 13.012403840463595,
+      "mean": 13.397872373501995,
+      "std": 0.1480036366776563,
+      "unique_fraction": 0.68,
+      "mean_modules": 12.28,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 55,
+      "best": 13.012403840463595,
+      "mean": 13.39413644897377,
+      "std": 0.14552444959407784,
+      "unique_fraction": 0.66,
+      "mean_modules": 12.26,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 56,
+      "best": 13.012403840463595,
+      "mean": 13.391310289238627,
+      "std": 0.14240755270514402,
+      "unique_fraction": 0.66,
+      "mean_modules": 12.3,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 57,
+      "best": 13.012403840463595,
+      "mean": 13.375408124126077,
+      "std": 0.13768275442818095,
+      "unique_fraction": 0.62,
+      "mean_modules": 12.36,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 58,
+      "best": 13.012403840463595,
+      "mean": 13.369185503694853,
+      "std": 0.13285351664574335,
+      "unique_fraction": 0.64,
+      "mean_modules": 12.4,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 59,
+      "best": 13.012403840463595,
+      "mean": 13.368170428350457,
+      "std": 0.13161578942269853,
+      "unique_fraction": 0.64,
+      "mean_modules": 12.4,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 60,
+      "best": 13.012403840463595,
+      "mean": 13.35627325628267,
+      "std": 0.12607158884097328,
+      "unique_fraction": 0.64,
+      "mean_modules": 12.46,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 61,
+      "best": 13.012403840463595,
+      "mean": 13.350762969768477,
+      "std": 0.12085841392266684,
+      "unique_fraction": 0.66,
+      "mean_modules": 12.56,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 62,
+      "best": 13.012403840463595,
+      "mean": 13.339211671585824,
+      "std": 0.11837752258662683,
+      "unique_fraction": 0.66,
+      "mean_modules": 12.6,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 63,
+      "best": 13.012403840463595,
+      "mean": 13.332707435086474,
+      "std": 0.11316619029939631,
+      "unique_fraction": 0.64,
+      "mean_modules": 12.54,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 64,
+      "best": 13.012403840463595,
+      "mean": 13.327932893870173,
+      "std": 0.1078299242264831,
+      "unique_fraction": 0.62,
+      "mean_modules": 12.56,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 65,
+      "best": 13.012403840463595,
+      "mean": 13.327932893870173,
+      "std": 0.1078299242264831,
+      "unique_fraction": 0.62,
+      "mean_modules": 12.56,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 66,
+      "best": 13.012403840463595,
+      "mean": 13.326744829313297,
+      "std": 0.1066036239869476,
+      "unique_fraction": 0.6,
+      "mean_modules": 12.56,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 67,
+      "best": 13.012403840463595,
+      "mean": 13.32015919433585,
+      "std": 0.1034027541486001,
+      "unique_fraction": 0.6,
+      "mean_modules": 12.54,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 68,
+      "best": 13.012403840463595,
+      "mean": 13.313970345217774,
+      "std": 0.10094809446032166,
+      "unique_fraction": 0.58,
+      "mean_modules": 12.56,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 69,
+      "best": 13.012403840463595,
+      "mean": 13.313970345217774,
+      "std": 0.10094809446032166,
+      "unique_fraction": 0.58,
+      "mean_modules": 12.56,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 70,
+      "best": 13.012403840463595,
+      "mean": 13.30570538919248,
+      "std": 0.10209465091404589,
+      "unique_fraction": 0.56,
+      "mean_modules": 12.6,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 71,
+      "best": 13.012403840463595,
+      "mean": 13.30570538919248,
+      "std": 0.10209465091404589,
+      "unique_fraction": 0.56,
+      "mean_modules": 12.6,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 72,
+      "best": 13.012403840463595,
+      "mean": 13.30570538919248,
+      "std": 0.10209465091404589,
+      "unique_fraction": 0.56,
+      "mean_modules": 12.6,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 73,
+      "best": 13.012403840463595,
+      "mean": 13.300109766152646,
+      "std": 0.09959333280691186,
+      "unique_fraction": 0.56,
+      "mean_modules": 12.54,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 74,
+      "best": 13.012403840463595,
+      "mean": 13.300109766152646,
+      "std": 0.09959333280691186,
+      "unique_fraction": 0.56,
+      "mean_modules": 12.54,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 75,
+      "best": 13.012403840463595,
+      "mean": 13.300109766152646,
+      "std": 0.09959333280691186,
+      "unique_fraction": 0.56,
+      "mean_modules": 12.54,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 76,
+      "best": 13.012403840463595,
+      "mean": 13.300109766152646,
+      "std": 0.09959333280691186,
+      "unique_fraction": 0.56,
+      "mean_modules": 12.54,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 77,
+      "best": 13.012403840463595,
+      "mean": 13.300109766152646,
+      "std": 0.09959333280691186,
+      "unique_fraction": 0.56,
+      "mean_modules": 12.54,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 78,
+      "best": 13.012403840463595,
+      "mean": 13.291898502190456,
+      "std": 0.10595339675519741,
+      "unique_fraction": 0.56,
+      "mean_modules": 12.62,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 79,
+      "best": 13.012403840463595,
+      "mean": 13.286392269952072,
+      "std": 0.10464978937523847,
+      "unique_fraction": 0.58,
+      "mean_modules": 12.64,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 80,
+      "best": 13.012403840463595,
+      "mean": 13.282887167379906,
+      "std": 0.10371676036539615,
+      "unique_fraction": 0.58,
+      "mean_modules": 12.66,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 81,
+      "best": 13.012403840463595,
+      "mean": 13.275657031661028,
+      "std": 0.10108317863617168,
+      "unique_fraction": 0.58,
+      "mean_modules": 12.74,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 82,
+      "best": 13.012403840463595,
+      "mean": 13.273814599717706,
+      "std": 0.09962908866101645,
+      "unique_fraction": 0.56,
+      "mean_modules": 12.74,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 83,
+      "best": 13.012403840463595,
+      "mean": 13.273814599717706,
+      "std": 0.09962908866101645,
+      "unique_fraction": 0.56,
+      "mean_modules": 12.74,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 84,
+      "best": 13.012403840463595,
+      "mean": 13.271591687357702,
+      "std": 0.0980157271268149,
+      "unique_fraction": 0.54,
+      "mean_modules": 12.72,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 85,
+      "best": 13.012403840463595,
+      "mean": 13.263671211491818,
+      "std": 0.09881243731978608,
+      "unique_fraction": 0.52,
+      "mean_modules": 12.8,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 86,
+      "best": 13.012403840463595,
+      "mean": 13.261924952062055,
+      "std": 0.09730408684020446,
+      "unique_fraction": 0.54,
+      "mean_modules": 12.84,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 87,
+      "best": 13.012403840463595,
+      "mean": 13.258432268353312,
+      "std": 0.0953845220113211,
+      "unique_fraction": 0.54,
+      "mean_modules": 12.88,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 88,
+      "best": 13.012403840463595,
+      "mean": 13.258432268353312,
+      "std": 0.0953845220113211,
+      "unique_fraction": 0.54,
+      "mean_modules": 12.88,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 89,
+      "best": 13.012403840463595,
+      "mean": 13.258432268353312,
+      "std": 0.0953845220113211,
+      "unique_fraction": 0.54,
+      "mean_modules": 12.88,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 90,
+      "best": 13.012403840463595,
+      "mean": 13.258432268353312,
+      "std": 0.0953845220113211,
+      "unique_fraction": 0.54,
+      "mean_modules": 12.88,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 91,
+      "best": 13.012403840463595,
+      "mean": 13.258432268353312,
+      "std": 0.0953845220113211,
+      "unique_fraction": 0.54,
+      "mean_modules": 12.88,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 92,
+      "best": 13.012403840463595,
+      "mean": 13.253878786278072,
+      "std": 0.09240335299616204,
+      "unique_fraction": 0.5,
+      "mean_modules": 12.82,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 93,
+      "best": 13.012403840463595,
+      "mean": 13.253745544525064,
+      "std": 0.09224114498203075,
+      "unique_fraction": 0.5,
+      "mean_modules": 12.8,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 94,
+      "best": 13.012403840463595,
+      "mean": 13.252376770242346,
+      "std": 0.09102886528171951,
+      "unique_fraction": 0.5,
+      "mean_modules": 12.82,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 95,
+      "best": 13.012403840463595,
+      "mean": 13.247118119830898,
+      "std": 0.08915483050460582,
+      "unique_fraction": 0.48,
+      "mean_modules": 12.78,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 96,
+      "best": 13.012403840463595,
+      "mean": 13.247118119830898,
+      "std": 0.08915483050460582,
+      "unique_fraction": 0.48,
+      "mean_modules": 12.78,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 97,
+      "best": 13.012403840463595,
+      "mean": 13.243785685041535,
+      "std": 0.08685395587568374,
+      "unique_fraction": 0.48,
+      "mean_modules": 12.82,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 98,
+      "best": 13.012403840463595,
+      "mean": 13.24155599947789,
+      "std": 0.08587766486425484,
+      "unique_fraction": 0.46,
+      "mean_modules": 12.84,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 99,
+      "best": 13.012403840463595,
+      "mean": 13.236922611841416,
+      "std": 0.08447410441421067,
+      "unique_fraction": 0.46,
+      "mean_modules": 12.9,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    },
+    {
+      "generation": 100,
+      "best": 13.012403840463595,
+      "mean": 13.236694396950433,
+      "std": 0.08422683262945609,
+      "unique_fraction": 0.48,
+      "mean_modules": 12.94,
+      "crossover_success_rate": 1.0,
+      "mutation_success_rate": 1.0
+    }
+  ]
+}

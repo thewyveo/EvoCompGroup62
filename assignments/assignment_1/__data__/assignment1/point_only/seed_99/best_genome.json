@@ -1,0 +1,127 @@
+{
+  "nodes": {
+    "0": {
+      "type": "CORE",
+      "rotation": "DEG_0"
+    },
+    "1": {
+      "type": "BRICK",
+      "rotation": "DEG_45"
+    },
+    "2": {
+      "type": "HINGE",
+      "rotation": "DEG_0"
+    },
+    "4": {
+      "type": "HINGE",
+      "rotation": "DEG_45"
+    },
+    "9": {
+      "type": "HINGE",
+      "rotation": "DEG_90"
+    },
+    "11": {
+      "type": "HINGE",
+      "rotation": "DEG_45"
+    },
+    "12": {
+      "type": "BRICK",
+      "rotation": "DEG_90"
+    },
+    "14": {
+      "type": "HINGE",
+      "rotation": "DEG_0"
+    },
+    "25": {
+      "type": "BRICK",
+      "rotation": "DEG_0"
+    },
+    "26": {
+      "type": "BRICK",
+      "rotation": "DEG_45"
+    },
+    "27": {
+      "type": "HINGE",
+      "rotation": "DEG_90"
+    },
+    "24": {
+      "type": "BRICK",
+      "rotation": "DEG_45"
+    },
+    "28": {
+      "type": "BRICK",
+      "rotation": "DEG_90"
+    },
+    "29": {
+      "type": "BRICK",
+      "rotation": "DEG_90"
+    }
+  },
+  "edges": [
+    {
+      "parent": 0,
+      "child": 1,
+      "face": "FRONT"
+    },
+    {
+      "parent": 0,
+      "child": 2,
+      "face": "RIGHT"
+    },
+    {
+      "parent": 2,
+      "child": 4,
+      "face": "FRONT"
+    },
+    {
+      "parent": 0,
+      "child": 9,
+      "face": "LEFT"
+    },
+    {
+      "parent": 1,
+      "child": 11,
+      "face": "BOTTOM"
+    },
+    {
+      "parent": 12,
+      "child": 14,
+      "face": "RIGHT"
+    },
+    {
+      "parent": 1,
+      "child": 12,
+      "face": "TOP"
+    },
+    {
+      "parent": 24,
+      "child": 25,
+      "face": "RIGHT"
+    },
+    {
+      "parent": 26,
+      "child": 27,
+      "face": "FRONT"
+    },
+    {
+      "parent": 25,
+      "child": 26,
+      "face": "FRONT"
+    },
+    {
+      "parent": 12,
+      "child": 24,
+      "face": "TOP"
+    },
+    {
+      "parent": 9,
+      "child": 28,
+      "face": "FRONT"
+    },
+    {
+      "parent": 28,
+      "child": 29,
+      "face": "BOTTOM"
+    }
+  ]
+}

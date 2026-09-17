@@ -1,0 +1,127 @@
+{
+  "nodes": {
+    "0": {
+      "type": "CORE",
+      "rotation": "DEG_0"
+    },
+    "10": {
+      "type": "HINGE",
+      "rotation": "DEG_90"
+    },
+    "22": {
+      "type": "BRICK",
+      "rotation": "DEG_0"
+    },
+    "23": {
+      "type": "BRICK",
+      "rotation": "DEG_45"
+    },
+    "25": {
+      "type": "BRICK",
+      "rotation": "DEG_90"
+    },
+    "31": {
+      "type": "BRICK",
+      "rotation": "DEG_0"
+    },
+    "38": {
+      "type": "HINGE",
+      "rotation": "DEG_45"
+    },
+    "37": {
+      "type": "HINGE",
+      "rotation": "DEG_0"
+    },
+    "41": {
+      "type": "HINGE",
+      "rotation": "DEG_0"
+    },
+    "44": {
+      "type": "HINGE",
+      "rotation": "DEG_0"
+    },
+    "45": {
+      "type": "BRICK",
+      "rotation": "DEG_90"
+    },
+    "46": {
+      "type": "HINGE",
+      "rotation": "DEG_45"
+    },
+    "47": {
+      "type": "BRICK",
+      "rotation": "DEG_45"
+    },
+    "48": {
+      "type": "HINGE",
+      "rotation": "DEG_45"
+    }
+  },
+  "edges": [
+    {
+      "parent": 0,
+      "child": 10,
+      "face": "LEFT"
+    },
+    {
+      "parent": 22,
+      "child": 23,
+      "face": "BOTTOM"
+    },
+    {
+      "parent": 22,
+      "child": 25,
+      "face": "LEFT"
+    },
+    {
+      "parent": 0,
+      "child": 22,
+      "face": "FRONT"
+    },
+    {
+      "parent": 23,
+      "child": 31,
+      "face": "FRONT"
+    },
+    {
+      "parent": 37,
+      "child": 38,
+      "face": "FRONT"
+    },
+    {
+      "parent": 0,
+      "child": 37,
+      "face": "RIGHT"
+    },
+    {
+      "parent": 31,
+      "child": 41,
+      "face": "LEFT"
+    },
+    {
+      "parent": 25,
+      "child": 44,
+      "face": "LEFT"
+    },
+    {
+      "parent": 45,
+      "child": 46,
+      "face": "FRONT"
+    },
+    {
+      "parent": 10,
+      "child": 45,
+      "face": "FRONT"
+    },
+    {
+      "parent": 31,
+      "child": 47,
+      "face": "BOTTOM"
+    },
+    {
+      "parent": 47,
+      "child": 48,
+      "face": "FRONT"
+    }
+  ]
+}
