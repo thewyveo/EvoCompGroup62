@@ -52,19 +52,19 @@
     {
       "comparison": "mixed vs point_only",
       "U": 68.0,
-      "p_value": 0.18571128044479945,
+      "p_value": 0.9190926968314943,
       "A12": 0.32
     },
     {
       "comparison": "mixed vs random_search",
       "U": 0.0,
-      "p_value": 0.0001816511460914649,
+      "p_value": 9.082557304573245e-05,
       "A12": 1.0
     },
     {
       "comparison": "point_only vs random_search",
       "U": 0.0,
-      "p_value": 0.00018267179110955002,
+      "p_value": 9.133589555477501e-05,
       "A12": 1.0
     }
   ]

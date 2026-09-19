@@ -405,7 +405,7 @@ def write_summary(records: list[dict[str, Any]]) -> None:
     tests = []
     for first, second in (("mixed", "point_only"), ("mixed", "random_search"), ("point_only", "random_search")):
         x, y = final_values(records, first), final_values(records, second)
-        test = mannwhitneyu(x, y, alternative="two-sided")
+        test = mannwhitneyu(x, y, alternative="less")
         tests.append(
             {
                 "comparison": f"{first} vs {second}",
