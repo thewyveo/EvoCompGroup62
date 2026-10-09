@@ -1,0 +1,29 @@
+{
+  "algo": "random",
+  "seeds": null,
+  "mu": 30,
+  "lam": 30,
+  "gens": 150,
+  "patience": 0,
+  "workers": 7,
+  "func": null,
+  "seed": 2,
+  "SIM_DURATION": 15.0,
+  "SPAWN_POS": [
+    0.0,
+    0.0,
+    0.1
+  ],
+  "TARGET_POSITION": [
+    2.0,
+    0.0,
+    0.1
+  ],
+  "HIDDEN_SIZE": 6,
+  "GAIT_FREQ": 1.0,
+  "SIGMA_INIT": 0.1,
+  "TOURNAMENT_K": 3,
+  "P_CROSSOVER": 0.9,
+  "body": "john_set.gecko",
+  "world": "SimpleFlatWorld"
+}
