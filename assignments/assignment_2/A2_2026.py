@@ -78,8 +78,8 @@ set_seed(SEED)
 
 # --- DATA SETUP --- #
 SCRIPT_NAME = Path(__file__).stem
-CWD = Path.cwd()
-DATA = CWD / "__data__" / SCRIPT_NAME
+DATA = Path(__file__).parent / "__data__" / SCRIPT_NAME
+FIGURES = Path(__file__).parent / "figures"
 DATA.mkdir(parents=True, exist_ok=True)
 
 # --- EXPERIMENT CONSTANTS --- #
@@ -277,11 +277,15 @@ def fitness_function(
 # ============================================================================ #
 
 
-def run_experiment(mode: ViewerTypes = MODE) -> float:
+def run_experiment(
+    mode: ViewerTypes = MODE,
+    trace: list[npt.NDArray[np.float64]] | None = None,
+) -> float:
     """Set up the world, run one simulation, and return the fitness.
 
     This is the function your EA calls once per individual, with `mode` set
-    to "simple" (headless).
+    to "simple" (headless). If `trace` is given, the core's (x, y) position
+    is appended to it during a "simple" run.
 
     Returns
     -------
@@ -343,7 +347,10 @@ def run_experiment(mode: ViewerTypes = MODE) -> float:
             viewer.launch(model=model, data=data)
         case "simple":
             # Headless. THIS is the one your EA uses.
-            simple_runner(model, data, duration=SIM_DURATION)
+            if trace is None:
+                simple_runner(model, data, duration=SIM_DURATION)
+            else:
+                traced_runner(model, data, SIM_DURATION, trace)
         case "video":
             # Render to an mp4 - for the figures in your report.
             recorder = VideoRecorder(output_folder=str(DATA / "__videos__"))
@@ -401,10 +408,6 @@ def main() -> None:
     console.log(f"genotype length (total weights)    : {num_weights}")
 
     run_experiment(MODE)
-
-
-if __name__ == "__main__":
-    main()
 
 
 # ============================================================================ #
@@ -485,13 +488,32 @@ def random_genome(n_genes: int) -> list[float]:
     return [*np.clip(weights, -W_MAX, W_MAX).tolist(), SIGMA_INIT]
 
 
-def evaluate_genome(genome: list[float], mode: ViewerTypes = "simple") -> float:
+def traced_runner(
+    model: mj.MjModel,
+    data: mj.MjData,
+    duration: float,
+    trace: list[npt.NDArray[np.float64]],
+    steps_per_loop: int = 100,
+) -> None:
+    """Same stepping as `simple_runner`, but records the core's (x, y) path."""
+    mj.mj_resetData(model, data)
+    trace.append(get_core_position(data)[:2])
+    while data.time < duration:
+        mj.mj_step(model, data, nstep=steps_per_loop)
+        trace.append(get_core_position(data)[:2])
+
+
+def evaluate_genome(
+    genome: list[float],
+    mode: ViewerTypes = "simple",
+    trace: list[npt.NDArray[np.float64]] | None = None,
+) -> float:
     global CURRENT_GENOME
     CURRENT_GENOME = list(genome)
     was_quiet = console.quiet
     console.quiet = mode == "simple"
     try:
-        fitness = run_experiment(mode)
+        fitness = run_experiment(mode, trace)
     finally:
         console.quiet = was_quiet
         CURRENT_GENOME = None
@@ -677,12 +699,20 @@ def cmd_run(args: argparse.Namespace) -> None:
         console.log(f"done: best fitness {logger.best_so_far:.4f} -> {run_dir}")
 
 
+ALGOS: tuple[Algo, ...] = ("random", "fixed", "selfadapt")
+LABELS = {"random": "random search", "fixed": "fixed $\\sigma$",
+          "selfadapt": "self-adaptive $\\sigma$"}
+COLORS = {"random": "tab:gray", "fixed": "tab:blue", "selfadapt": "tab:orange"}
+
+
 def load_runs(algo: str) -> list[dict[str, npt.NDArray[np.float64]]]:
     runs = []
     for path in sorted((DATA / algo).glob("seed_*/stats.csv")):
         with path.open() as f:
             rows = list(csv.DictReader(f))
-        runs.append({k: np.array([float(r[k]) for r in rows]) for k in RunLogger.FIELDS})
+        run = {k: np.array([float(r[k]) for r in rows]) for k in RunLogger.FIELDS}
+        run["seed"] = np.array(int(path.parent.name.removeprefix("seed_")))
+        runs.append(run)
     return runs
 
 
@@ -691,56 +721,195 @@ def pad(arrays: list[npt.NDArray[np.float64]]) -> npt.NDArray[np.float64]:
     return np.array([np.concatenate((a, np.full(n - len(a), a[-1]))) for a in arrays])
 
 
-def cmd_plot(args: argparse.Namespace) -> None:
+def a12(a: npt.NDArray[np.float64], b: npt.NDArray[np.float64]) -> float:
+    """Vargha-Delaney A12: probability that a run of `a` beats (is lower than) one of `b`."""
+    a, b = np.asarray(a)[:, None], np.asarray(b)[None, :]
+    return float(((a < b).sum() + 0.5 * (a == b).sum()) / (a.size * b.size))
+
+
+def plot_style():
+    """Shared matplotlib style, so every figure looks the same."""
     import matplotlib.pyplot as plt
 
-    algos = [a for a in ("random", "fixed", "selfadapt") if load_runs(a)]
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4.5))
-    finals = {}
+    plt.rcParams.update({
+        "figure.figsize": (6, 4),
+        "savefig.dpi": 200,
+        "savefig.bbox": "tight",
+        "font.size": 10,
+        "axes.titlesize": 11,
+        "axes.titleweight": "bold",
+        "axes.spines.top": False,
+        "axes.spines.right": False,
+        "axes.grid": True,
+        "grid.alpha": 0.3,
+        "legend.frameon": False,
+        "legend.fontsize": 9,
+        "lines.linewidth": 1.8,
+    })
+    return plt
+
+
+def save_figure(fig, name: str) -> None:
+    FIGURES.mkdir(exist_ok=True)
+    fig.tight_layout()
+    fig.savefig(FIGURES / name)
+    console.log(f"saved {FIGURES / name}")
+
+
+def cmd_plot(args: argparse.Namespace) -> None:
+    from scipy.stats import mannwhitneyu
+
+    plt = plot_style()
+    algos = [a for a in ALGOS if load_runs(a)]
+    finals, curves, summary = {}, {}, {"algos": {}, "tests": []}
     for algo in algos:
         runs = load_runs(algo)
         best = pad([r["best_so_far"] for r in runs])
-        evals = max((r["evaluations"] for r in runs), key=len)
-        m, s = best.mean(0), best.std(0)
-        (line,) = ax1.plot(evals, m, label=f"{algo} best (n={len(runs)})")
-        ax1.fill_between(evals, m - s, m + s, alpha=0.2, color=line.get_color())
-        if algo != "random":
-            mean = pad([r["mean"] for r in runs])
-            ax1.plot(evals, mean.mean(0), "--", color=line.get_color(),
-                     label=f"{algo} pop. mean")
-        finals[algo] = best[:, -1]
-    ax1.set(xlabel="evaluations", ylabel="distance to target [m] (lower = better)",
-            title="Best-so-far fitness, mean ± std over seeds")
-    ax1.legend()
-    ax2.boxplot(list(finals.values()), tick_labels=list(finals.keys()))
-    ax2.set(ylabel="final best distance [m]", title="Final best fitness per run")
-    fig.tight_layout()
-    fig.savefig(DATA / "convergence.png", dpi=200)
-    console.log(f"saved {DATA / 'convergence.png'}")
+        finals[algo], curves[algo] = best[:, -1], best
+        back = lambda k: best[:, max(-k - 1, -best.shape[1])]  # noqa: E731, B023
+        summary["algos"][algo] = {
+            "n": len(runs),
+            "seeds": [int(r["seed"]) for r in runs],
+            "generations": int(best.shape[1] - 1),
+            "evaluations": int(max(r["evaluations"][-1] for r in runs)),
+            "final_best": best[:, -1].tolist(),
+            "mean": float(best[:, -1].mean()),
+            "std": float(best[:, -1].std(ddof=1)),
+            "median": float(np.median(best[:, -1])),
+            "min": float(best[:, -1].min()),
+            "max": float(best[:, -1].max()),
+            "improvement_last50_mean": float((back(50) - best[:, -1]).mean()),
+            "improvement_last100_mean": float((back(100) - best[:, -1]).mean()),
+            "final_pop_mean_mean": float(pad([r["mean"] for r in runs])[:, -1].mean()),
+            "final_sigma_mean": float(pad([r["mean_sigma"] for r in runs])[:, -1].mean()),
+        }
+        console.log(f"{algo:10s} final best: mean {best[:, -1].mean():.4f}  "
+                    f"std {best[:, -1].std(ddof=1):.4f}  n={len(runs)}")
 
-    for algo, f in finals.items():
-        console.log(f"{algo:10s} final best: mean {f.mean():.4f}  std {f.std():.4f}  n={len(f)}")
-    try:
-        from scipy.stats import mannwhitneyu
+    # One-sided exact tests: is the first approach's best-so-far distance lower than the
+    # second's? At the end of the run (the research question) and, exploratory, at gen 150.
+    comparisons = [(x, y, -1) for x, y in
+                   (("selfadapt", "fixed"), ("fixed", "random"), ("selfadapt", "random"))]
+    comparisons.append(("selfadapt", "fixed", 150))
+    for x, y, gen in comparisons:
+        if x in curves and y in curves and curves[x].shape[1] > gen:
+            fx, fy = curves[x][:, gen], curves[y][:, gen]
+            test = {
+                "a": x, "b": y,
+                "generation": int(curves[x].shape[1] - 1 if gen == -1 else gen),
+                "p_one_sided": float(mannwhitneyu(fx, fy, alternative="less", method="exact").pvalue),
+                "p_two_sided": float(mannwhitneyu(fx, fy, method="exact").pvalue),
+                "U": float(mannwhitneyu(fx, fy, method="exact").statistic),
+                "A12": a12(fx, fy),
+            }
+            summary["tests"].append(test)
+            console.log(f"Mann-Whitney U {x} < {y} @ gen {test['generation']}: "
+                        f"p = {test['p_one_sided']:.4g} (two-sided {test['p_two_sided']:.4g}), "
+                        f"A12 = {test['A12']:.2f}")
 
-        names = list(finals)
-        for i in range(len(names)):
-            for j in range(i + 1, len(names)):
-                p = mannwhitneyu(finals[names[i]], finals[names[j]]).pvalue
-                console.log(f"Mann-Whitney U {names[i]} vs {names[j]}: p = {p:.4g}")
-    except ImportError:
-        console.log("scipy not installed - skipping significance tests")
+    (DATA / "summary.json").write_text(json.dumps(summary, indent=2))
+    with (DATA / "summary.csv").open("w", newline="") as fh:
+        cols = ("n", "generations", "evaluations", "mean", "std", "median", "min", "max",
+                "improvement_last50_mean", "improvement_last100_mean", "final_sigma_mean")
+        w = csv.writer(fh)
+        w.writerow(("algo", *cols))
+        for algo, row in summary["algos"].items():
+            w.writerow((algo, *(row[c] for c in cols)))
+    console.log(f"saved {DATA / 'summary.json'}")
 
-    if load_runs("selfadapt"):
-        fig, ax = plt.subplots(figsize=(6, 4))
-        sig = pad([r["mean_sigma"] for r in load_runs("selfadapt")])
-        ax.plot(sig.mean(0))
-        ax.fill_between(range(sig.shape[1]), sig.mean(0) - sig.std(0),
-                        sig.mean(0) + sig.std(0), alpha=0.2)
-        ax.set(xlabel="generation", ylabel="mean sigma in population",
-               title="Self-adaptive step size")
-        fig.tight_layout()
-        fig.savefig(DATA / "sigma.png", dpi=200)
+    # 1. Best-so-far fitness across generations, mean +- std over runs.
+    fig, ax = plt.subplots()
+    for algo, best in curves.items():
+        gens = np.arange(best.shape[1])
+        m, s = best.mean(0), best.std(0, ddof=1)
+        ax.plot(gens, m, color=COLORS[algo], label=LABELS[algo])
+        ax.fill_between(gens, m - s, m + s, color=COLORS[algo], alpha=0.15, lw=0)
+    ax.set(xlabel="generation", ylabel="distance to target [m]", ylim=(0, None),
+           title=f"Best-so-far fitness (mean $\\pm$ std, {len(next(iter(finals.values())))} runs)")
+    ax.legend(loc="upper right")
+    save_figure(fig, "fitness_over_generations.png")
+
+    # 2. Final best distance of every run.
+    fig, ax = plt.subplots()
+    box = ax.boxplot(list(finals.values()), tick_labels=[LABELS[a] for a in finals], widths=0.5,
+                     patch_artist=True, showfliers=False, medianprops={"color": "black"})
+    jitter = np.random.default_rng(0)
+    for i, (algo, f) in enumerate(finals.items(), start=1):
+        box["boxes"][i - 1].set(facecolor=COLORS[algo], alpha=0.2, edgecolor=COLORS[algo])
+        ax.scatter(i + jitter.uniform(-0.1, 0.1, len(f)), f, s=22, color=COLORS[algo], zorder=3)
+    ax.set(ylabel="final best distance [m]", ylim=(0, None), title="Final best distance per run")
+    ax.grid(axis="x", visible=False)
+    save_figure(fig, "final_best.png")
+
+    if "selfadapt" not in curves:
+        return
+    sig = pad([r["mean_sigma"] for r in load_runs("selfadapt")])
+
+    # 3. Self-adaptive step size per run.
+    fig, ax = plt.subplots()
+    for i, run in enumerate(sig):
+        ax.plot(run, lw=0.8, alpha=0.45, color=COLORS["selfadapt"],
+                label="single run" if i == 0 else None)
+    ax.plot(sig.mean(0), lw=2.4, color=COLORS["selfadapt"], label="mean over runs")
+    ax.axhline(SIGMA_INIT, ls="--", color=COLORS["fixed"], label="fixed $\\sigma$ = 0.1")
+    ax.set_yscale("log")
+    ax.set(xlabel="generation", ylabel="mean $\\sigma$ in population",
+           title="Self-adaptive mutation step size")
+    ax.legend(loc="lower left")
+    save_figure(fig, "sigma.png")
+
+    # 4. Final step size vs final distance: does a collapsed sigma go with a stuck run?
+    fig, ax = plt.subplots()
+    if "fixed" in finals:
+        ax.scatter(np.full(len(finals["fixed"]), SIGMA_INIT), finals["fixed"], s=30,
+                   color=COLORS["fixed"], label=LABELS["fixed"], zorder=3)
+    ax.scatter(sig[:, -1], finals["selfadapt"], s=30, color=COLORS["selfadapt"],
+               label=LABELS["selfadapt"], zorder=3)
+    ax.axhline(0.1, ls=":", color="0.4", label="reached target (< 0.1 m)")
+    ax.set_xscale("log")
+    ax.margins(x=0.08)
+    ax.set(xlabel="final mean $\\sigma$ in population", ylabel="final best distance [m]",
+           ylim=(0, None), title="Final step size vs. final distance")
+    ax.legend(loc="upper left")
+    save_figure(fig, "sigma_vs_final.png")
+
+    if not args.no_show:
+        plt.show()
+
+
+def cmd_trajectory(args: argparse.Namespace) -> None:
+    """Replay the best and the median run of each approach and plot the core's path."""
+    from matplotlib.lines import Line2D
+
+    plt = plot_style()
+    fig, ax = plt.subplots()
+    plotted = []
+    for algo in ALGOS:
+        runs = sorted((json.loads(p.read_text())["fitness"], p)
+                      for p in (DATA / algo).glob("seed_*/best_genome.json"))
+        if not runs:
+            continue
+        plotted.append(algo)
+        for kind, (stored, path) in (("best", runs[0]), ("median", runs[len(runs) // 2])):
+            trace: list[npt.NDArray[np.float64]] = []
+            fitness = evaluate_genome(json.loads(path.read_text())["genome"], trace=trace)
+            assert np.isclose(fitness, stored, atol=1e-6), (path, stored, fitness)
+            xy = np.array(trace)
+            ax.plot(xy[:, 0], xy[:, 1], "-" if kind == "best" else "--", color=COLORS[algo])
+            console.log(f"{algo:10s} {kind:6s} {path.parent.name}: {fitness:.4f} m (stored {stored:.4f})")
+    ax.plot(*SPAWN_POS[:2], "o", color="black", ms=7, zorder=3)
+    ax.plot(*TARGET_POSITION[:2], "*", color="red", ms=15, zorder=3)
+    handles = [Line2D([], [], color=COLORS[a], label=LABELS[a]) for a in plotted]
+    handles += [
+        Line2D([], [], color="0.3", ls="-", label="best run"),
+        Line2D([], [], color="0.3", ls="--", label="median run"),
+        Line2D([], [], color="black", marker="o", ls="", label="spawn"),
+        Line2D([], [], color="red", marker="*", ms=12, ls="", label="target"),
+    ]
+    ax.legend(handles=handles, loc="lower right", ncol=2)
+    ax.set(xlabel="x [m]", ylabel="y [m]", title="Path of the robot core in 15 s")
+    ax.set_aspect("equal", adjustable="datalim")
+    save_figure(fig, "trajectory.png")
     if not args.no_show:
         plt.show()
 
@@ -756,11 +925,11 @@ if __name__ == "__main__":
     sub = parser.add_subparsers(required=True)
 
     p = sub.add_parser("run")
-    p.add_argument("--algo", choices=["fixed", "selfadapt", "random"], required=True)
-    p.add_argument("--seeds", type=int, nargs="+", default=[0, 1, 2, 3, 4])
+    p.add_argument("--algo", choices=ALGOS, required=True)
+    p.add_argument("--seeds", type=int, nargs="+", default=list(range(10)))
     p.add_argument("--mu", type=int, default=30)
     p.add_argument("--lam", type=int, default=30)
-    p.add_argument("--gens", type=int, default=100)
+    p.add_argument("--gens", type=int, default=400)
     p.add_argument("--patience", type=int, default=0)
     p.add_argument("--workers", type=int, default=max(1, mp.cpu_count() - 1))
     p.set_defaults(func=cmd_run)
@@ -769,11 +938,18 @@ if __name__ == "__main__":
     p.add_argument("--no-show", action="store_true")
     p.set_defaults(func=cmd_plot)
 
+    p = sub.add_parser("trajectory")
+    p.add_argument("--no-show", action="store_true")
+    p.set_defaults(func=cmd_trajectory)
+
     p = sub.add_parser("show")
-    p.add_argument("--algo", choices=["fixed", "selfadapt", "random"], required=True)
+    p.add_argument("--algo", choices=ALGOS, required=True)
     p.add_argument("--seed", type=int, default=0)
     p.add_argument("--view", choices=["launcher", "video", "simple"], default="launcher")
     p.set_defaults(func=cmd_show)
+
+    p = sub.add_parser("demo", help="one run of the template's random-weight controller")
+    p.set_defaults(func=lambda _: main())
 
     args = parser.parse_args()
     if getattr(args, "workers", 1) > 1:

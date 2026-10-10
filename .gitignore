@@ -4,6 +4,9 @@
 # Dirs
 __data__
 !assignments/assignment_1/__data__
+!assignments/assignment_2/__data__
+assignments/assignment_2/__data__/**/database.db
+assignments/assignment_2/62.zip
 # Mujoco
 MUJOCO_LOG.TXT
 # DrawIo
@@ -276,3 +279,4 @@ RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 !assignments/assignment_1/__data__/**/*.png
+!assignments/assignment_2/figures/*.png
